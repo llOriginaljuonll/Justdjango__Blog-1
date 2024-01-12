@@ -22,7 +22,7 @@ def post(request, slug):
 def about(request):
 	return render(request, 'about_page.html')
 
-def category_post_list(request, slug):
+def postlist(request, slug):
 	category = Category.objects.get(slug=slug)
 	posts = Post.objects.filter(categories__in=[category])
 	context = {
