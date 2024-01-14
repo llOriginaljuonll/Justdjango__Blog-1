@@ -17,7 +17,7 @@ def post(request, slug):
 	context = {
 		'post': post,
 	}
-	return render(request, 'psot.html', context)
+	return render(request, 'post.html', context)
 
 def about(request):
 	return render(request, 'about_page.html')
@@ -35,4 +35,4 @@ def allposts(request):
 	context = {
 		'post': posts,
 	}
-	return render(request, 'all_post', context)
+	return render(request, 'all_posts.html', context)
