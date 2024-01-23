@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Author, Category, Post
+from django.db.models import Q
 
 def homepage(request):
 	categories = Category.objects.all()[0:3]
@@ -36,3 +37,15 @@ def allposts(request):
 		'post': posts,
 	}
 	return render(request, 'all_posts.html', context)
+
+def search(request):
+	queryset = Post.objects.all()
+	query = request.GET.get('q')
+	if query:
+		queryset =queryset.filter(
+			Q(title__icontains=query) | Q(overview__icontains=query)
+		).distinct()
+	context = {
+		'queryset': queryset
+	}
+	return render(request, 'search_results.html', context)
